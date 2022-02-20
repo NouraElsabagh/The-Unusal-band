@@ -2,86 +2,91 @@
 #define buzzer 5
 
 
-
 // Set the transmitting and recieving pin
-CapacitiveSensor pin_12_3 = CapacitiveSensor(12,3);
-CapacitiveSensor pin_12_4 = CapacitiveSensor(12,4);
-CapacitiveSensor pin_12_5 = CapacitiveSensor(12,5);
-CapacitiveSensor pin_12_6 = CapacitiveSensor(12,6);
-CapacitiveSensor pin_12_7 = CapacitiveSensor(12,7);
-CapacitiveSensor pin_12_8 = CapacitiveSensor(12,8);
-CapacitiveSensor pin_12_9 = CapacitiveSensor(12,9);
-CapacitiveSensor pin_12_10 = CapacitiveSensor(12,10);
-
+CapacitiveSensor tape_11_2 = CapacitiveSensor(11,2);
+CapacitiveSensor tape_11_3 = CapacitiveSensor(11,3);
+CapacitiveSensor tape_11_4 = CapacitiveSensor(11,4);
+CapacitiveSensor tape_11_6 = CapacitiveSensor(11,6);
+CapacitiveSensor tape_11_7 = CapacitiveSensor(11,7);
+CapacitiveSensor tape_11_8 = CapacitiveSensor(11,8);
+CapacitiveSensor tape_11_9 = CapacitiveSensor(11,9);
 
 
 void setup()
 {
 // turn off autocalibrate on channel 1
-pin_12_3.set_CS_AutocaL_Millis(0xFFFFFFFF);
-pin_12_4.set_CS_AutocaL_Millis(0xFFFFFFFF);
-pin_12_5.set_CS_AutocaL_Millis(0xFFFFFFFF);
-pin_12_6.set_CS_AutocaL_Millis(0xFFFFFFFF);
-pin_12_7.set_CS_AutocaL_Millis(0xFFFFFFFF);
-pin_12_8.set_CS_AutocaL_Millis(0xFFFFFFFF);
-pin_12_9.set_CS_AutocaL_Millis(0xFFFFFFFF);
-pin_12_10.set_CS_AutocaL_Millis(0xFFFFFFFF);
+tape_11_2.set_CS_AutocaL_Millis(0xFFFFFFFF);
+tape_11_3.set_CS_AutocaL_Millis(0xFFFFFFFF);
+tape_11_4.set_CS_AutocaL_Millis(0xFFFFFFFF);
+tape_11_6.set_CS_AutocaL_Millis(0xFFFFFFFF);
+tape_11_7.set_CS_AutocaL_Millis(0xFFFFFFFF);
+tape_11_8.set_CS_AutocaL_Millis(0xFFFFFFFF);
+tape_11_9.set_CS_AutocaL_Millis(0xFFFFFFFF);
 Serial.begin(9600);
 }
-
-
 
 
 void loop()
 {
 // Assigning each pin as specific touch location and defining sensitivity of the sensors
-long touch1 = pin_12_3.capacitiveSensor(1000);
-long touch2 = pin_12_4.capacitiveSensor(1000);
-long touch3 = pin_12_5.capacitiveSensor(1000);
-long touch4 = pin_12_6.capacitiveSensor(1000);
-long touch5 = pin_12_7.capacitiveSensor(1000);
-long touch6 = pin_12_8.capacitiveSensor(1000);
-long touch7 = pin_12_9.capacitiveSensor(1000);
-long touch8 = pin_12_10.capacitiveSensor(1000);
-
-
-
-Serial.println("1st note capacitance:", touch1);
-
-
-
-// When sensor reads high voltage due to touch, buzzer is activates
-// Each touch produces a different frequency of sound
-while (touch1 > 1000){
-tone(buzzer,230);
-}
-if (touch2 > 1000){
-tone(buzzer,500);
-}
-if (touch3 > 1000){
-tone(buzzer,650);
-}
-if (touch4 > 1000) {
-tone(buzzer,900);
-}
-if (touch5 > 1000){
-tone(buzzer,1100);
-}
-if (touch6 > 1000){
-tone(buzzer,1300);
-}
-if (touch7 > 1000){
-tone(buzzer,1670);
-}
-if (touch8 > 1000){
-tone(buzzer,1900);
-}
+long tape1 = tape_11_2.capacitiveSensor(1000);
+long tape2 = tape_11_3.capacitiveSensor(1000);
+long tape3 = tape_11_4.capacitiveSensor(1000);
+long tape4 = tape_11_6.capacitiveSensor(1000);
+long tape5 = tape_11_7.capacitiveSensor(1000);
+long tape6 = tape_11_8.capacitiveSensor(1000);
+long tape7 = tape_11_9.capacitiveSensor(1000);
 
 
 
 // When no touch is recieved by the capacitive sensor, no sound is produced
-if (touch1<=1000 & touch2<=1000 & touch3<=1000 & touch4<=1000 & touch5<=1000 & touch6<=1000 & touch7<=1000 & touch8<=1000)
+if (tape1<=1000 & tape2<=1000 & tape3<=1000 & tape4<=1000 & tape5<=1000 & tape6<=1000 & tape7<=1000 ){
 noTone(buzzer);
-delay(10);
+delay(5);
+}
+else {
+MakeSound();
+}
+
+
+
+
+
+}
+
+
+void MakeSound() {
+long tape1 = tape_11_2.capacitiveSensor(1000);
+long tape2 = tape_11_3.capacitiveSensor(1000);
+long tape3 = tape_11_4.capacitiveSensor(1000);
+long tape4 = tape_11_6.capacitiveSensor(1000);
+long tape5 = tape_11_7.capacitiveSensor(1000);
+long tape6 = tape_11_8.capacitiveSensor(1000);
+long tape7 = tape_11_9.capacitiveSensor(1000);
+// When sensor reads high voltage due to touch, buzzer is activates
+// Each touch produces a different frequency of sound
+while (tape1 > 1000){
+tone(buzzer,400);
+}
+if (tape2 > 1000){
+tone(buzzer,270);
+}
+if (tape3 > 1000){
+tone(buzzer,650);
+}
+if (tape4 > 1000) {
+tone(buzzer,900);
+}
+if (tape5 > 1000){
+tone(buzzer,1100);
+}
+if (tape6 > 1000){
+tone(buzzer,1300);
+}
+if (tape7 > 1000){
+tone(buzzer,1670);
+}
+
+
 
 }
